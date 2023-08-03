@@ -34,4 +34,12 @@ export MAVEN_OPTS="-client
   -XX:TieredStopAtLevel=1
   -Xverify:none";
 
+echo -e "\033[1;31m Please wait $modules_arg check...\033[0m"
+echo -e "\033[1;32m mvn apache-rat:check\033[0m"
+mvn -q -pl "$modules_arg" apache-rat:check;
+echo -e "\033[1;33m mvn spotless:apply\033[0m"
+mvn -q -pl "$modules_arg" spotless:apply;
+echo -e "\033[1;34m mvn spotless:check\033[0m"
+mvn -q -pl "$modules_arg" spotless:check;
+echo -e "\033[1;35m mvn checkstyle:check\033[0m"
 mvn -q -pl "$modules_arg" checkstyle:check;
